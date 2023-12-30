@@ -1,0 +1,80 @@
+[
+	{
+		"name": "Talking Doll",
+		"price": 123,
+		"labels": [
+			"Doll",
+			"Battery Powered",
+			"Baby"
+		],
+		"createdAt": 1631031801011,
+		"inStock": false,
+		"img": 8
+	},
+	{
+		"name": "Building Blocks Set",
+		"price": 45,
+		"labels": [
+			"Puzzle",
+			"Outdoor"
+		],
+		"createdAt": 1631031801022,
+		"inStock": true,
+		"img": 10
+	},
+	{
+		"name": "Remote Control Car",
+		"price": 89,
+		"labels": [
+			"Box game",
+			"Battery Powered"
+		],
+		"createdAt": 1631031801033,
+		"inStock": true,
+		"img": 7
+	},
+	{
+		"name": "Rubber Duck",
+		"price": 30,
+		"labels": [
+			"On wheels",
+			"Art"
+		],
+		"createdAt": 1631031801044,
+		"inStock": false,
+		"img": 3
+	},
+	{
+		"name": "Talking Robot",
+		"price": 20,
+		"labels": [
+			"Outdoor",
+			"Art"
+		],
+		"createdAt": 1631031801055,
+		"inStock": true,
+		"img": 9
+	},
+	{
+		"name": "Stuffed Animal - Teddy Bear",
+		"price": 15,
+		"labels": [
+			"Puzzle",
+			"Doll"
+		],
+		"createdAt": 1631031801066,
+		"inStock": true,
+		"img": 4
+	},
+	{
+		"name": "Toy Train",
+		"price": 35,
+		"labels": [
+			"Doll",
+			"Battery Powered"
+		],
+		"createdAt": 1631031801077,
+		"inStock": true,
+		"img": 5
+	}
+]
