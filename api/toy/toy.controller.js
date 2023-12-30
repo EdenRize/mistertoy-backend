@@ -31,12 +31,9 @@ export async function getToyById(req, res) {
 }
 
 export async function addToy(req, res) {
-    const { loggedinUser } = req
-
     try {
         const toy = req.body
         toy.createdAt = Date.now()
-        // toy.owner = loggedinUser
         const addedToy = await toyService.add(toy)
         res.json(addedToy)
     } catch (err) {
