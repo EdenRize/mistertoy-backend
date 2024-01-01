@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "659016310fe6628f7a17d391"
+  },
+  "username": "eden",
+  "password": "$2b$10$.ua.snoBH/v68MoOpX9qquJpVZ7dXIdyPRyBEuWDpBNbTUYKnIa1C",
+  "fullname": "e",
+  "isAdmin": "true"
+},
+{
+  "_id": {
+    "$oid": "65902287a7708c551bd3f138"
+  },
+  "username": "f",
+  "password": "$2b$10$VUMZ3NVd.gbMXn8Mgmml.uF2Sjm3Y3haaf5HlqcWrLmkp9ABzh7qy",
+  "fullname": "f",
+  "iaAdmin": false
+},
+{
+  "_id": {
+    "$oid": "65902614e792e9a99ac24322"
+  },
+  "username": "b",
+  "password": "$2b$10$P7OhyQGL8HM7Yqy8mHPwAu.SE0yYEMcD6AfznDue63JZu6OhJcGn2",
+  "fullname": "b",
+  "iaAdmin": false
+},
+{
+  "_id": {
+    "$oid": "65902685e792e9a99ac24323"
+  },
+  "username": "h",
+  "password": "$2b$10$d5LKw3WqwkyndXpFyYzu8OTZ7PMM/9GjibeDCQUTWu.Z9DuyPA4Q2",
+  "fullname": "h",
+  "iaAdmin": false
+},
+{
+  "_id": {
+    "$oid": "65902fa0a319837b51016a49"
+  },
+  "username": "k",
+  "password": "$2b$10$5yNjaLorogubYw7/uRpHFuFKAHqd/gEqawgyvPpmzveJk.F3YdTEy",
+  "fullname": "k",
+  "iaAdmin": false
+}]

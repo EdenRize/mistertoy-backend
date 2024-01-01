@@ -46,6 +46,17 @@ async function query(filterBy = {}) {
             }
         ]).toArray()
 
+        if (filterBy.username) {
+            const userRegExp = new RegExp(filterBy.username, 'i')
+            reviews = reviews.filter(review => userRegExp.test(review.user.fullname))
+        }
+
+        if (filterBy.toyname) {
+            const ToyRegExp = new RegExp(filterBy.toyname, 'i')
+            reviews = reviews.filter(review => ToyRegExp.test(review.toy.name))
+        }
+
+
         return reviews
     } catch (err) {
         logger.error('cannot find reviews', err)
@@ -91,7 +102,6 @@ function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.userId) criteria.userId = new ObjectId(filterBy.userId)
     if (filterBy.toyId) criteria.toyId = new ObjectId(filterBy.toyId)
-    console.log('criteria', criteria)
     return criteria
 }
 
