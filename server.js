@@ -42,6 +42,9 @@ app.use('/api/user', userRoutes)
 import { toyRoutes } from './api/toy/toy.routes.js'
 app.use('/api/toy', toyRoutes)
 
+import { reviewRoutes } from './api/review/review.routes.js'
+app.use('/api/review', reviewRoutes)
+
 // Make every unmatched server-side-route fall back to index.html
 // So when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue-router to take it from there

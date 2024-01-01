@@ -16,33 +16,33 @@ async function query(filterBy = {}) {
             {
                 $lookup:
                 {
-                    localField: 'byUserId',
+                    localField: 'userId',
                     from: 'Users',
                     foreignField: '_id',
-                    as: 'byUser'
+                    as: 'user'
                 }
             },
             {
-                $unwind: '$byUser'
+                $unwind: '$user'
             },
             {
                 $lookup:
                 {
-                    localField: 'aboutUserId',
-                    from: 'Users',
+                    localField: 'toyId',
+                    from: 'Toys',
                     foreignField: '_id',
-                    as: 'aboutUser'
+                    as: 'toy'
                 }
             },
             {
-                $unwind: '$aboutUser'
+                $unwind: '$toy'
             }
         ]).toArray()
         reviews = reviews.map(review => {
-            review.byUser = { _id: review.byUser._id, fullname: review.byUser.fullname }
-            review.aboutUser = { _id: review.aboutUser._id, fullname: review.aboutUser.fullname }
-            delete review.byUserId
-            delete review.aboutUserId
+            review.user = { _id: review.user._id, fullname: review.user.fullname }
+            review.toy = { _id: review.toy._id, name: review.toy.name, price: review.toy.price }
+            delete review.userId
+            delete review.toyId
             return review
         })
 
@@ -61,7 +61,7 @@ async function remove(reviewId) {
         const collection = await dbService.getCollection('Reviews')
         // remove only if user is owner/admin
         const criteria = { _id: ObjectId(reviewId) }
-        if (!loggedinUser.isAdmin) criteria.byUserId = ObjectId(loggedinUser._id)
+        if (!loggedinUser.isAdmin) criteria.userId = ObjectId(loggedinUser._id)
         const { deletedCount } = await collection.deleteOne(criteria)
         return deletedCount
     } catch (err) {
@@ -74,8 +74,8 @@ async function remove(reviewId) {
 async function add(review) {
     try {
         const reviewToAdd = {
-            byUserId: ObjectId(review.byUserId),
-            aboutUserId: ObjectId(review.aboutUserId),
+            userId: review.userId,
+            toyId: review.toyId,
             txt: review.txt
         }
         const collection = await dbService.getCollection('Reviews')
@@ -89,7 +89,8 @@ async function add(review) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.byUserId) criteria.byUserId = filterBy.byUserId
+    if (filterBy.userId) criteria.userId = filterBy.userId
+    if (filterBy.toyId) criteria.toyId = filterBy.toyId
     return criteria
 }
 
