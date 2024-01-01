@@ -8,7 +8,6 @@ async function query(filterBy = {}) {
     try {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('Reviews')
-        // const reviews = await collection.find(criteria).toArray()
         var reviews = await collection.aggregate([
             {
                 $match: criteria
@@ -36,15 +35,16 @@ async function query(filterBy = {}) {
             },
             {
                 $unwind: '$toy'
+            },
+            {
+                $project: {
+                    _id: true,
+                    txt: true,
+                    user: { _id: true, fullname: true },
+                    toy: { _id: true, name: true, price: true },
+                }
             }
         ]).toArray()
-        reviews = reviews.map(review => {
-            review.user = { _id: review.user._id, fullname: review.user.fullname }
-            review.toy = { _id: review.toy._id, name: review.toy.name, price: review.toy.price }
-            delete review.userId
-            delete review.toyId
-            return review
-        })
 
         return reviews
     } catch (err) {
@@ -74,8 +74,8 @@ async function remove(reviewId) {
 async function add(review) {
     try {
         const reviewToAdd = {
-            userId: review.userId,
-            toyId: review.toyId,
+            userId: new ObjectId(review.userId),
+            toyId: new ObjectId(review.toyId),
             txt: review.txt
         }
         const collection = await dbService.getCollection('Reviews')
@@ -89,8 +89,9 @@ async function add(review) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.userId) criteria.userId = filterBy.userId
-    if (filterBy.toyId) criteria.toyId = filterBy.toyId
+    if (filterBy.userId) criteria.userId = new ObjectId(filterBy.userId)
+    if (filterBy.toyId) criteria.toyId = new ObjectId(filterBy.toyId)
+    console.log('criteria', criteria)
     return criteria
 }
 
