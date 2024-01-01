@@ -14,7 +14,7 @@
       "$numberLong": "1631031801011"
     },
     "inStock": false,
-    "img": 8,
+    "img": "../../src/assets/img/8.svg",
     "msgs": []
   },
   {
@@ -31,7 +31,7 @@
       "$numberLong": "1631031801022"
     },
     "inStock": true,
-    "img": 10,
+    "img": "../../src/assets/img/10.svg",
     "msgs": []
   },
   {
@@ -48,7 +48,7 @@
       "$numberLong": "1631031801033"
     },
     "inStock": true,
-    "img": 7,
+    "img": "../../src/assets/img/7.svg",
     "msgs": []
   },
   {
@@ -65,7 +65,7 @@
       "$numberLong": "1631031801044"
     },
     "inStock": false,
-    "img": 3,
+    "img": "../../src/assets/img/3.svg",
     "msgs": []
   },
   {
@@ -82,7 +82,7 @@
       "$numberLong": "1631031801055"
     },
     "inStock": true,
-    "img": 9,
+    "img": "../../src/assets/img/9.svg",
     "msgs": []
   },
   {
@@ -99,7 +99,7 @@
       "$numberLong": "1631031801066"
     },
     "inStock": true,
-    "img": 4,
+    "img": "../../src/assets/img/4.svg",
     "msgs": []
   },
   {
@@ -116,7 +116,7 @@
       "$numberLong": "1631031801077"
     },
     "inStock": true,
-    "img": 5,
+    "img": "../../src/assets/img/5.svg",
     "msgs": []
   },
   {
@@ -131,7 +131,7 @@
       "Outdoor"
     ],
     "inStock": true,
-    "img": 1,
+    "img": "../../src/assets/img/1.svg",
     "createdAt": {
       "$numberLong": "1703945165923"
     },
@@ -159,7 +159,7 @@
       "Puzzle"
     ],
     "inStock": true,
-    "img": 3,
+    "img": "../../src/assets/img/3.svg",
     "msgs": [
       {
         "txt": "new",
