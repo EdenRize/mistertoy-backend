@@ -1,6 +1,6 @@
 import { dbService } from '../../services/db.service.js'
 import { logger } from '../../services/logger.service.js'
-import { asyncLocalStorage } from '../../services/als.service.js'
+// import { asyncLocalStorage } from '../../services/als.service.js'
 import mongodb from 'mongodb'
 const { ObjectId } = mongodb
 
@@ -56,12 +56,12 @@ async function query(filterBy = {}) {
 
 async function remove(reviewId) {
     try {
-        const store = asyncLocalStorage.getStore()
-        const { loggedinUser } = store
+        // const store = asyncLocalStorage.getStore()
+        // const { loggedinUser } = store
         const collection = await dbService.getCollection('Reviews')
         // remove only if user is owner/admin
         const criteria = { _id: ObjectId(reviewId) }
-        if (!loggedinUser.isAdmin) criteria.userId = ObjectId(loggedinUser._id)
+        // if (!loggedinUser.isAdmin) criteria.userId = ObjectId(loggedinUser._id)
         const { deletedCount } = await collection.deleteOne(criteria)
         return deletedCount
     } catch (err) {
