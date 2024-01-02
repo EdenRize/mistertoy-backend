@@ -3,6 +3,8 @@ import { logger } from '../../services/logger.service.js'
 import { userService } from '../user/user.service.js'
 import { authService } from '../auth/auth.service.js'
 import { reviewService } from './review.service.js'
+import { socketService } from '../../services/socket.service.js'
+import { toyService } from '../toy/toy.service.js'
 
 export async function getReviews(req, res) {
     try {
@@ -31,23 +33,22 @@ export async function deleteReview(req, res) {
 
 export async function addReview(req, res) {
 
-    // var { loggedinUser } = req
+    var { loggedinUser } = req
 
     try {
         var review = req.body
         review = await reviewService.add(review)
 
+
+
+        // socketService.broadcast({ type: 'review-added', data: review, userId: loggedinUser._id })
+
+        const toy = await toyService.getById(review.toyId)
+        socketService.emitTo({ type: 'toy-updated', data: toy, label: toy._id })
+
         delete review.toyId
         delete review.userId
-
-        // socketService.broadcast({type: 'review-added', data: review, userId: loggedinUser._id})
-        // socketService.emitToUser({type: 'review-about-you', data: review, userId: review.aboutUser._id})
-
-        // const fullUser = await userService.getById(loggedinUser._id)
-        // socketService.emitTo({type: 'user-updated', data: fullUser, label: fullUser._id})
-
         res.send(review)
-
     } catch (err) {
         logger.error('Failed to add review', err)
         res.status(400).send({ err: 'Failed to add review' })

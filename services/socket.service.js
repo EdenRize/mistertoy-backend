@@ -33,9 +33,27 @@ export function setupSocketAPI(server) {
             socket.broadcast.to(socket.myTopic).emit('chat-add-msg', msg)
         })
 
-        socket.on('user-watch', userId => {
-            logger.info(`user-watch from socket [id: ${socket.id}], on user ${userId}`)
-            socket.join('watching:' + userId)
+        socket.on('chat-set-typing', user => {
+            logger.info(`New chat typing from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
+            // emits to all sockets:
+            // gIo.emit('chat addMsg', msg)
+            // emits only to sockets in the same room except the sender!
+            // socket.broadcast.to(socket.myTopic).emit('chat-add-msg', msg)
+            broadcast({ room: socket.myTopic, userId: socket.userId, data: user, type: 'chat-set-typing' })
+        })
+
+        socket.on('chat-remove-typing', user => {
+            logger.info(`New chat remove typing from socket [id: ${socket.id}], emitting to topic ${socket.myTopic}`)
+            // emits to all sockets:
+            // gIo.emit('chat addMsg', msg)
+            // emits only to sockets in the same room except the sender!
+            // socket.broadcast.to(socket.myTopic).emit('chat-add-msg', msg)
+            broadcast({ room: socket.myTopic, userId: socket.userId, data: user, type: 'chat-remove-typing' })
+        })
+
+        socket.on('toy-watch', toyId => {
+            logger.info(`toy-watch from socket [id: ${socket.id}], on toy ${toyId}`)
+            socket.join('watching:' + toyId)
         })
 
         socket.on('set-user-socket', userId => {
