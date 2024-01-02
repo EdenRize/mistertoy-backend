@@ -71,7 +71,7 @@ async function remove(reviewId) {
         // const { loggedinUser } = store
         const collection = await dbService.getCollection('Reviews')
         // remove only if user is owner/admin
-        const criteria = { _id: ObjectId(reviewId) }
+        const criteria = { _id: new ObjectId(reviewId) }
         // if (!loggedinUser.isAdmin) criteria.userId = ObjectId(loggedinUser._id)
         const { deletedCount } = await collection.deleteOne(criteria)
         return deletedCount
